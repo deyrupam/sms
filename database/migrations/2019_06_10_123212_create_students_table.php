@@ -24,7 +24,7 @@ class CreateStudentsTable extends Migration
             $table->string('photo')->nullable();
             $table->string('email',100)->nullable();
             $table->string('phone_no')->nullable();
-            $table->string('extra_activity')->nullable();
+
             $table->string('note',500)->nullable();
             $table->string('father_name')->nullable();
             $table->string('father_phone_no',15)->nullable();

@@ -69,7 +69,7 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="student/add">
+										<a href="{{ url('student/add') }}">
 											<span class="sub-item">Add Student</span>
 										</a>
 									</li>

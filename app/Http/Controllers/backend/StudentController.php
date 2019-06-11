@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Student;
 
 class StudentController extends Controller
 {
@@ -14,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return "dad";
+        return view('backend.student.index');
     }
 
     /**
@@ -32,7 +33,44 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+
+
+
+        if($request->hasFile('photo_stu')){
+            $file =$request->file('photo_stu');
+            $file->move("upload/",$file->getClientOriginalName());
+            $fileName=$file->getClientOriginalName();
+        }
+        else{
+        $fileName='default.png';
+        }
+
+        $student = new Student([
+            'name' => $request->name_stu,
+            'dob' => $request->dob_stu,
+
+            'religion' =>$request->religion_stu,
+
+            'blood_group' =>$request->bgroup_stu,
+            'nationality' =>$request->nationlity_stu,
+            'photo' =>$fileName,
+            'email' =>$request->email_stu,
+            'phone_no' =>$request->mobile_stu,
+            'note' =>$request->note_stu,
+            'father_name' =>$request->father_stu,
+            'father_phone_no' =>$request->father_mobile,
+            'mother_name' =>$request->mother_stu,
+            'mother_phone_no' =>$request->mother_mobile,
+            'guardian' =>$request->guardian_stu,
+            'guardian_phone_no' =>$request->guardian_mobile,
+            'present_address' =>$request->pre_address,
+            'permanent_address' =>$request->per_address,
+        ]);
+         $student->save();
+         return redirect('student/')->with('success', 'Add Student Successfully');
     }
 
     /**

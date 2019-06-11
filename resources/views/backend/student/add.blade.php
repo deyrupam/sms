@@ -32,6 +32,8 @@
 								<div class="card-header">
 									<div class="card-title">Student Info:</div>
 								</div>
+                                <form method="post" action="{{url('student/add')}}" enctype="multipart/form-data">
+                                @csrf
 								<div class="card-body">
 									<div class="row">
 										<div class="col-md-6 col-lg-4">
@@ -42,26 +44,26 @@
 											</div>
 											<div class="form-group">
 												<label for="password">DOB</label>
-												<input type="text" class="form-control" name="dob_stu" id="dob_stu" placeholder="Data Of Birth">
+												<input type="date" class="form-control" name="dob_stu" id="dob_stu" placeholder="Data Of Birth">
 											</div>
                                             <div class="form-check">
 												<label>Gender</label><br/>
 												<label class="form-radio-label">
-													<input class="form-radio-input" type="radio" name="optionsRadios" value=""  checked="">
+													<input class="form-radio-input" type="radio" name="male_stu" value=""  checked="">
 													<span class="form-radio-sign">Male</span>
 												</label>
 												<label class="form-radio-label ml-3">
-													<input class="form-radio-input" type="radio" name="optionsRadios" value="">
+													<input class="form-radio-input" type="radio" name="female_stu" value="">
 													<span class="form-radio-sign">Female</span>
 												</label>
 											</div>
                                             <div class="form-group">
 												<label for="disableinput">Religion</label>
-												<input type="text" class="form-control" name="religion_stu" id="religioninput" placeholder="Enter Religion" >
+												<input type="text" class="form-control" name="religion_stu" id="religion_stu" placeholder="Enter Religion" >
 											</div>
                                             <div class="form-group">
 												<label for="disableinput">Blood Group</label>
-												<input type="text" class="form-control" name="bgroup_stu" id="religioninput" placeholder="Blood Group" >
+												<input type="text" class="form-control" name="bgroup_stu" id="bgroup_stu" placeholder="Blood Group" >
 											</div>
 											<div class="form-group form-inline">
 												<label for="inlineinput" class="col-md-3 col-form-label">Nationlity</label>
@@ -75,14 +77,7 @@
 													<input type="text" class="form-control input-full" name="mobile_stu" id="mobile_stu" placeholder="Mobile Number ">
 												</div>
 											</div>
-
-											<div class="form-check">
-												<label class="form-check-label">
-													<input class="form-check-input" type="checkbox" value="">
-													<span class="form-check-sign">Agree with terms and conditions</span>
-												</label>
-											</div>
-										</div>
+                                            </div>
 										<div class="col-md-6 col-lg-4">
 
 											<div class="form-group">
@@ -121,7 +116,7 @@
 										    <div class="col-md-6 col-lg-4">
                                             <div class="form-group">
 												<label for="exampleFormControlFile1">Upload Student Photo</label>
-												<input type="file" class="form-control-file" id="exampleFormControlFile1">
+												<input type="file" class="form-control-file" id="photo_stu" name="photo_stu">
 											</div>
                                             <div class="form-group">
 												<label for="comment">Present Address</label>
@@ -132,7 +127,7 @@
 
                                             <div class="form-group">
 												<label for="comment">Parmanent Address</label>
-												<textarea class="form-control" name="pre_address" id="pre_address" rows="5">
+												<textarea class="form-control" name="per_address" id="pre_address" rows="5">
 
 												</textarea>
 											</div>
@@ -147,9 +142,10 @@
 									</div>
 								</div>
 								<div class="card-action">
-									<button class="btn btn-success">Save</button>
-									<button class="btn btn-danger">Cancel</button>
+									<button type="submit" class="btn btn-success">Save</button>
+									<button type="submit"class="btn btn-danger">Cancel</button>
 								</div>
+                                </form>
 							</div>
 						</div>
 					</div>

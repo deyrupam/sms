@@ -22,5 +22,10 @@ Route::get('/test', 'TestController@index');
 
 
 // student routes
-//Route::resource('student', 'backend\StudentController');
-Route::get('student/add',  'backend\StudentController@add');
+
+Route::group(['prefix'=>'student'],function(){
+    Route::get('/', 'backend\StudentController@index');
+    Route::get('/add', 'backend\StudentController@add');
+    Route::post('/add','backend\StudentController@store');
+});
+

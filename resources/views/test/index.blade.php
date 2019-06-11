@@ -1,1 +1,1 @@
-@extends('layouts.main_front')
+@extends('layouts.front_master')
