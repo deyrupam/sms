@@ -36,7 +36,9 @@ class CreateStudentsTable extends Migration
             $table->string('permanent_address',500);
             $table->enum('status', [0,1])->default(1);
             $table->timestamps();
+
         });
+
     }
 
     /**
@@ -46,6 +48,7 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('student_info_log');
         Schema::dropIfExists('students');
     }
 }

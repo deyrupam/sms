@@ -5,6 +5,12 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Student;
+use App\Registration;
+use App\IClass;
+use App\Section;
+use DB;
+
+
 
 class StudentController extends Controller
 {
@@ -15,7 +21,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('backend.student.index');
+     return view('backend.student.index');
     }
 
     /**
@@ -36,41 +42,59 @@ class StudentController extends Controller
 
 
 
+            return $request;
 
 
+        // if($request->hasFile('photo_stu')){
+        //     $file =$request->file('photo_stu');
+        //     $file->move("upload/",$file->getClientOriginalName());
+        //     $fileName=$file->getClientOriginalName();
+        // }
+        // else{
+        // $fileName='default.png';
+        // }
 
-        if($request->hasFile('photo_stu')){
-            $file =$request->file('photo_stu');
-            $file->move("upload/",$file->getClientOriginalName());
-            $fileName=$file->getClientOriginalName();
-        }
-        else{
-        $fileName='default.png';
-        }
 
-        $student = new Student([
-            'name' => $request->name_stu,
-            'dob' => $request->dob_stu,
+        // $student = new Student([
+        //     'name' => $request->name_stu,
+        //     'dob' => $request->dob_stu,
+        //     'dob' => $request->gender_stu,
+        //     'religion' =>$request->religion_stu,
 
-            'religion' =>$request->religion_stu,
+        //     'blood_group' =>$request->bgroup_stu,
+        //     'nationality' =>$request->nationlity_stu,
+        //     'photo' =>$fileName,
+        //     'email' =>$request->email_stu,
+        //     'phone_no' =>$request->mobile_stu,
+        //     'note' =>$request->note_stu,
+        //     'father_name' =>$request->father_stu,
+        //     'father_phone_no' =>$request->father_mobile,
+        //     'mother_name' =>$request->mother_stu,
+        //     'mother_phone_no' =>$request->mother_mobile,
+        //     'guardian' =>$request->guardian_stu,
+        //     'guardian_phone_no' =>$request->guardian_mobile,
+        //     'present_address' =>$request->pre_address,
+        //     'permanent_address' =>$request->per_address,
+        // ]);
+        // $student->save();
+        //  $registration = new Registration([
+        //     'regi_no' => $request->name_stu,
+        //     'student_id' => $request->stu_id,
+        //     'class_id' => $request->class_stu,
+        //     'section_id' =>$request->section_stu,
 
-            'blood_group' =>$request->bgroup_stu,
-            'nationality' =>$request->nationlity_stu,
-            'photo' =>$fileName,
-            'email' =>$request->email_stu,
-            'phone_no' =>$request->mobile_stu,
-            'note' =>$request->note_stu,
-            'father_name' =>$request->father_stu,
-            'father_phone_no' =>$request->father_mobile,
-            'mother_name' =>$request->mother_stu,
-            'mother_phone_no' =>$request->mother_mobile,
-            'guardian' =>$request->guardian_stu,
-            'guardian_phone_no' =>$request->guardian_mobile,
-            'present_address' =>$request->pre_address,
-            'permanent_address' =>$request->per_address,
-        ]);
-         $student->save();
-         return redirect('student/')->with('success', 'Add Student Successfully');
+        //     'academic_year_id' =>$request->bgroup_stu,
+        //     'roll_no' =>$request->roll_stu,
+        //     'group' =>$fileName,
+        //     'shift' =>$request->shift_stu,
+        //     'card_no' =>$request->idCard_stu,
+        //     'board_regi_no' =>$request->note_stu,
+        //     'fourth_subject' =>$request->elective_sub_stu,
+
+        // ]);
+        // $registration->save();
+
+         //return redirect('student/')->with('success', 'Add Student Successfully');
     }
 
     /**
@@ -120,6 +144,9 @@ class StudentController extends Controller
 
     public function add()
     {
-       return view('backend.student.add');
+        $iclass = DB::table('i_classes')->get();
+        $section = DB::table('sections')->get();
+
+        return view('backend.student.add', ['iclass' => $iclass,'section' =>$section]);
     }
 }

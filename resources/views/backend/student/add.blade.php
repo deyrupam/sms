@@ -49,11 +49,11 @@
                                             <div class="form-check">
 												<label>Gender</label><br/>
 												<label class="form-radio-label">
-													<input class="form-radio-input" type="radio" name="male_stu" value=""  checked="">
+													<input class="form-radio-input" type="radio" name="gender_stu" value="1"  checked="">
 													<span class="form-radio-sign">Male</span>
 												</label>
 												<label class="form-radio-label ml-3">
-													<input class="form-radio-input" type="radio" name="female_stu" value="">
+													<input class="form-radio-input" type="radio" name="gender_stu" value="2">
 													<span class="form-radio-sign">Female</span>
 												</label>
 											</div>
@@ -138,6 +138,77 @@
 
 												</textarea>
 											</div>
+                                        </div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+                    <div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Academic Info:</div>
+								</div>
+                                <div class="card-body">
+									<div class="row">
+										<div class="col-md-6 col-lg-4">
+											<div class="form-group">
+												<label for="email2">Registration No</label>
+												<input type="text" class="form-control" name="reg_stu" id="reg_stu" placeholder="Registration No">
+												<small id="nameHelp2" class="form-text text-muted">Reg no will generate automatically</small>
+											</div>
+											<div class="form-group">
+												<label for="password"> Id Card No</label>
+												<input type="text" class="form-control" name="idCard_stu" id="idCard_stu" placeholder="Id Card No">
+											</div>
+
+
+                                            </div>
+										<div class="col-md-6 col-lg-4">
+
+
+                                        <div class="form-group">
+												<label for="exampleFormControlSelect1">Class</label>
+												<select class="form-control" id="class_stu" name="class_stu">
+                                                <option value="101">Pick up class..</option>
+                                                @foreach($iclass as $class)
+
+													<option value="{{$class->id}}">{{$class->name}}</option>
+                                                @endforeach
+												</select>
+											</div>
+                                            <div class="form-group">
+												<label for="email2">Roll Number</label>
+												<input type="text" class="form-control" name="roll_stu" id="roll_stu" placeholder="Roll Number">
+											</div>
+                                            <div class="form-group">
+												<label for="email2">Shift</label>
+												<input type="text" class="form-control" name="shift_stu" id="shift_stu" placeholder="Shift ">
+											</div>
+                                        </div>
+										    <div class="col-md-6 col-lg-4">
+
+                                            <div class="form-group">
+												<label for="exampleFormControlSelect1">Section</label>
+												<select class="form-control" id="section_stu" name="section_stu">
+                                                <option value="101">Pick up section..</option>
+
+                                                    @foreach($section as $sec)
+                                                    <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->name}}</option>
+                                                    @endforeach
+
+
+												</select>
+											</div>
+
+                                            <div class="form-group">
+												<label for="email2">Elective/4th Subject</label>
+												<input type="text" class="form-control" name="elective_sub_stu" id="elective_sub_stu" placeholder="Elective/4th Subject">
+											</div>
+
+
                                         </div>
 									</div>
 								</div>

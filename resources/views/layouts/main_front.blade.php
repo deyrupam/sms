@@ -41,7 +41,8 @@
         @include('templates.custom_template')
 		<!-- End Custom template -->
 	</div>
-	<!--   Core JS Files   -->
+    <!--   Core JS Files   -->
+
 	<script src="{{  url('assets/js/core/jquery.3.2.1.min.js') }}"></script>
 	<script src="{{  url('assets/js/core/popper.min.js') }}"></script>
 	<script src="{{  url('assets/js/core/bootstrap.min.js') }}"></script>
@@ -80,7 +81,8 @@
 	<script src="{{  url('assets/js/atlantis.min.js') }}"></script>
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
-	<script src="{{  url('assets/js/setting-demo.js') }}"></script>
+    <script src="{{  url('assets/js/setting-demo.js') }}"></script>
+    <script src="{{  url('assets/js/main.js') }}"></script>
 
 
 	<script>
