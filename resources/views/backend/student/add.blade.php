@@ -156,7 +156,7 @@
 										<div class="col-md-6 col-lg-4">
 											<div class="form-group">
 												<label for="email2">Registration No</label>
-												<input type="text" class="form-control" name="reg_stu" id="reg_stu" placeholder="Registration No">
+												<input type="text" class="form-control" name="reg_stu" readonly  id="reg_stu" placeholder="Registration No">
 												<small id="nameHelp2" class="form-text text-muted">Reg no will generate automatically</small>
 											</div>
 											<div class="form-group">
@@ -184,8 +184,11 @@
 												<input type="text" class="form-control" name="roll_stu" id="roll_stu" placeholder="Roll Number">
 											</div>
                                             <div class="form-group">
-												<label for="email2">Shift</label>
-												<input type="text" class="form-control" name="shift_stu" id="shift_stu" placeholder="Shift ">
+												<label for="exampleFormControlSelect1">Shift</label>
+												<select class="form-control" id="shift_stu" name="shift_stu">
+                                                <option value="Morning">Morning</option>
+                                                <option value="Day">Day</option>
+                                                </select>
 											</div>
                                         </div>
 										    <div class="col-md-6 col-lg-4">
@@ -198,15 +201,20 @@
                                                     @foreach($section as $sec)
                                                     <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->name}}</option>
                                                     @endforeach
-
-
-												</select>
+                                                </select>
 											</div>
 
                                             <div class="form-group">
 												<label for="email2">Elective/4th Subject</label>
-												<input type="text" class="form-control" name="elective_sub_stu" id="elective_sub_stu" placeholder="Elective/4th Subject">
-											</div>
+
+                                                <select class="form-control" id="elective_sub_stu" name="elective_sub_stu">
+                                                <option value="0">Pick up section..</option>
+
+                                                    @foreach($electives as $elective)
+                                                    <option  value="{{$elective->code}}">{{$elective->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
 
                                         </div>

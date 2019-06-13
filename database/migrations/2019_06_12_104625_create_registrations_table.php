@@ -16,10 +16,10 @@ class CreateRegistrationsTable extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('regi_no',20)->unique();
-            $table->integer('student_id')->unsigned()->index();
-            $table->integer('class_id')->unsigned()->index();
-            $table->integer('section_id')->unsigned()->index();
-            $table->integer('academic_year_id')->unsigned()->index();
+            $table->bigInteger('student_id')->unsigned();
+            $table->bigInteger('class_id')->unsigned();
+            $table->bigInteger('section_id')->unsigned();
+            $table->bigInteger('academic_year_id')->unsigned();
             $table->string('roll_no',20)->nullable();
             $table->string('group',15)->nullable();
             $table->string('shift',15)->nullable();
@@ -28,6 +28,15 @@ class CreateRegistrationsTable extends Migration
             $table->unsignedInteger('fourth_subject')->default(0);
             $table->enum('status', [0,1])->default(1);
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('class_id')->references('id')->on('i_classes');
+            $table->foreign('section_id')->references('id')->on('sections');
+            $table->foreign('academic_year_id')->references('id')->on('academic_years');
+
+
+
+
 
 
         });
