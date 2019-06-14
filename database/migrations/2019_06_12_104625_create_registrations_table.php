@@ -15,7 +15,7 @@ class CreateRegistrationsTable extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('regi_no',20)->unique();
+            $table->string('reg_no',20)->unique();
             $table->bigInteger('student_id')->unsigned();
             $table->bigInteger('class_id')->unsigned();
             $table->bigInteger('section_id')->unsigned();

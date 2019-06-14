@@ -26,13 +26,11 @@ class StudentController extends Controller
             $StudentData = DB::table('students')
             ->join('registrations', 'students.id', '=', 'registrations.student_id')
 
-            ->select('students.*', 'registrations.regi_no','registrations.roll_no','registrations.card_no','registrations.status')
+            ->select('students.*', 'registrations.reg_no','registrations.roll_no','registrations.card_no','registrations.status')
             ->get();
 
             return view('backend.student.index',[
             'StudentData' => $StudentData,
-
-
             ]);
     }
 
@@ -51,14 +49,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('photo_stu')){
-            $file =$request->file('photo_stu');
-            $file->move("upload/",$file->getClientOriginalName());
-            $fileName=$file->getClientOriginalName();
-        }
-        else{
-        $fileName='default.png';
-        }
+
 
 
         $student = new Student([
@@ -83,6 +74,16 @@ class StudentController extends Controller
             'permanent_address' =>$request->per_address,
         ]);
         $student->save();
+        if($student){
+        if($request->hasFile('photo_stu')){
+            $file =$request->file('photo_stu');
+            $file->move("upload/",$file->getClientOriginalName());
+            $fileName=$file->getClientOriginalName();
+        }
+        else{
+        $fileName='default.png';
+        }
+        }
         $academic_year=AcademicYear::find(1);
 
         $regNo=mt_rand(190000,199999);
@@ -93,7 +94,7 @@ class StudentController extends Controller
         $rollNo =$totalStudent + 1;
 
             $registration = new Registration([
-           'regi_no' => $regNo,
+           'reg_no' => $regNo,
             'student_id' => $studentId->id,
             'class_id' => $request->class_stu,
             'section_id' =>$request->section_stu,
@@ -115,7 +116,23 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+
+
+            $student = DB::table('students')
+            ->join('registrations', 'students.id', '=', 'registrations.student_id')
+            ->where('students.id','=', $id)
+            ->select('students.*','registrations.reg_no')
+            ->get();
+            return view('backend.student.view',$student);
+
+
+
+
+
+
+
+
+
     }
 
     /**
@@ -126,7 +143,27 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = DB::table('students')->find($id);
+
+
+
+        $iclass = DB::table('i_classes')->get();
+        $section = DB::table('sections')->get();
+        $electives = DB::table('subjects')->get()
+                   ->where('type', 'Electives');
+
+
+
+       return view('backend.student.edit',
+          [
+            'student'=>$student,
+
+            'iclass' => $iclass,
+            'section' =>$section,
+            'electives'=>$electives
+            ]);
+
+
     }
 
     /**

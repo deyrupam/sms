@@ -39,25 +39,21 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">DataTables.Net</h4>
+						<h4 class="page-title">Student</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
-									<i class="flaticon-home"></i>
+									<i class="fas fa-user-graduate"></i>
 								</a>
 							</li>
 							<li class="separator">
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Tables</a>
+								<a href="#">List</a>
 							</li>
-							<li class="separator">
-								<i class="flaticon-right-arrow"></i>
-							</li>
-							<li class="nav-item">
-								<a href="#">Datatables</a>
-							</li>
+
+
 						</ul>
 					</div>
 					<div class="row">
@@ -114,29 +110,30 @@
 												<tr>
 													<td>
                                                     <div class="avatar">
-												     <img src="../assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
+												     <img src="../upload/{{$Student->photo}}" alt="..." class="avatar-img rounded-circle">
 											        </div>
 											        </td>
-													<td>{{ $Student->regi_no }}</td>
+													<td>{{ $Student->reg_no }}</td>
                                                     <td>{{ $Student->roll_no }}</td>
                                                     <td>{{ $Student->card_no }}</td>
                                                     <td>{{ $Student->name }}</td>
 													<td>{{ $Student->phone_no }}</td>
                                                     <td>{{ $Student->email }}</td>
+                                                    <td>@if($Student->status ==true)
+													active
+													@else
+													not
+													@endif
+													</td>
                                                     <td>
-                                                        @if($Student->status == '1')
-                                                        Active
-                                                        @else
-                                                        Not
-                                                        @endif
-                                                    </td>
-
-													<td>
 														<div class="form-button-action">
-															<a class="btn btn-link btn-primary btn-lg" href="#">
+															<a class="btn btn-link btn-primary btn-lg" href="{{url('student/edit')}}/{{ $Student->id }}">
                                                                 <i class="fa fa-edit"></i>
                                                             </a>
-															<a class="btn btn-link btn-danger" href="#">
+                                                            <a class="btn btn-link btn-primary btn-lg" href="{{url('student/')}}/{{ $Student->id }}">
+                                                            <i class="fas fa-eye"></i>
+                                                            </a>
+															<a class="btn btn-link btn-danger" href="{{url('student/')}}/{{ $Student->id }}">
 																<i class="fa fa-times"></i>
 															</a>
 														</div>
