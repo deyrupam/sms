@@ -29,5 +29,6 @@ Route::group(['prefix'=>'student'],function(){
     Route::post('/add','backend\StudentController@store');
     Route::get('/{id}','backend\StudentController@show');
     Route::get('/edit/{id}','backend\StudentController@edit');
+    Route::post('/update/{id}','backend\StudentController@update');
 });
 

@@ -143,25 +143,33 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $student = DB::table('students')->find($id);
 
 
-
-        $iclass = DB::table('i_classes')->get();
-        $section = DB::table('sections')->get();
-        $electives = DB::table('subjects')->get()
+                $student = DB::table('students')->find($id);
+                $iclass = DB::table('i_classes')->get();
+                $section = DB::table('sections')->get();
+                $electives = DB::table('subjects')->get()
                    ->where('type', 'Electives');
 
+              $reg = Registration::where('student_id', $id)
+              ->join('i_classes', 'registrations.class_id', '=', 'i_classes.id')
+              ->select('registrations.reg_no','registrations.roll_no','registrations.card_no','registrations.status',
+                'i_classes.id','i_classes.name')
+
+              ->first();
 
 
-       return view('backend.student.edit',
-          [
-            'student'=>$student,
+              return view('backend.student.edit',
+              ['student' =>$student,
+               'reg'=>$reg ,
+              'iclass' =>$iclass,
+              'section'=>$section,
+              'electives'=>$electives
+              ]);
 
-            'iclass' => $iclass,
-            'section' =>$section,
-            'electives'=>$electives
-            ]);
+
+
+
 
 
     }
@@ -175,7 +183,55 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+         if($request->hasFile('photo_stu')){
+            $file =$request->file('photo_stu');
+            $file->move("upload/",$file->getClientOriginalName());
+            $fileName=$file->getClientOriginalName();
+        }
+        else{
+            $fileName =$request->existing_img;
+
+        }
+
+
+
+
+
+
+            DB::table('students')
+            ->where('id', $id)
+            ->update([
+            'name' => $request->name_stu,
+            'dob' => $request->dob_stu,
+            'dob' => $request->gender_stu,
+            'religion' =>$request->religion_stu,
+            'blood_group' =>$request->bgroup_stu,
+            'nationality' =>$request->nationlity_stu,
+            'email' =>$request->email_stu,
+            'phone_no' =>$request->mobile_stu,
+            'note' =>$request->note_stu,
+            'father_name' =>$request->father_stu,
+            'father_phone_no' =>$request->father_mobile,
+            'mother_name' =>$request->mother_stu,
+            'mother_phone_no' =>$request->mother_mobile,
+            'guardian' =>$request->guardian_stu,
+            'guardian_phone_no' =>$request->guardian_mobile,
+            'present_address' =>$request->pre_address,
+            'permanent_address' =>$request->per_address,
+             ]);
+             DB::table('registrations')
+            ->where('student_id', $id)
+            ->update([
+             'roll_no' =>$request->roll_stu,
+            'card_no' =>$request->idCard_stu]);
+
+
+
+
+
+            return redirect('student/')->with('success', 'Student record updated!');
     }
 
     /**

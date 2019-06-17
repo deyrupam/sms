@@ -49,11 +49,12 @@
                                             <div class="form-check">
 												<label>Gender</label><br/>
 												<label class="form-radio-label">
-													<input class="form-radio-input" type="radio" name="gender_stu" value="1"  checked="">
+
+													<input class="form-radio-input" type="radio" name="gender_stu" @if( $student->gender == 1) echo checked="" @endif value="1">
 													<span class="form-radio-sign">Male</span>
 												</label>
 												<label class="form-radio-label ml-3">
-													<input class="form-radio-input" type="radio" name="gender_stu" value="2">
+													<input class="form-radio-input" type="radio" name="gender_stu" @if( $student->gender == 2 ) echo checked="" @endif value="2">
 													<span class="form-radio-sign">Female</span>
 												</label>
 											</div>
@@ -115,8 +116,19 @@
                                             </div>
 										    <div class="col-md-6 col-lg-4">
                                             <div class="form-group">
-												<label for="exampleFormControlFile1">Upload Student Photo</label>
-												<input type="file" class="form-control-file" id="photo_stu" name="photo_stu">
+												<label for="exampleFormControlFile1">Change Photo</label>
+                                                <div class="avatar avatar-xxl">
+                                                @if ($student->photo)
+                                                <img src="/upload/{{$student->photo}}">
+                                                @else
+                                                 <p>No image found</p>
+                                                @endif
+
+
+
+                                              </div>
+                                                <input type="hidden" name="existing_img" value="{{$student->photo}}" />
+                                                <input type="file" class="form-control-file" id="photo_stu" name="photo_stu">
 											</div>
                                             <div class="form-group">
 												<label for="comment">Present Address</label>
@@ -134,7 +146,7 @@
 
                                             <div class="form-group">
 												<label for="comment">Note</label>
-												<textarea class="form-control" name="note_stu" id="note_stu" rows="5" value="{{$student->note}}">
+												<textarea class="form-control" name="note_stu" id="note_stu" rows="5" placeholder="{{$student->note}}">
 
 												</textarea>
 											</div>
@@ -156,12 +168,12 @@
 										<div class="col-md-6 col-lg-4">
 											<div class="form-group">
 												<label for="email2">Registration No</label>
-												<input type="text" class="form-control" name="reg_stu" readonly  id="reg_stu" placeholder="{{ $registration->reg_no}}">
+												<input type="text" class="form-control" name="reg_stu" readonly  id="reg_stu" placeholder="{{$reg->reg_no}}">
 												<small id="nameHelp2" class="form-text text-muted">Reg no will generate automatically</small>
 											</div>
 											<div class="form-group">
 												<label for="password"> Id Card No</label>
-												<input type="text" class="form-control" name="idCard_stu" id="idCard_stu" placeholder="Id Card No">
+												<input type="text" class="form-control" name="idCard_stu" id="idCard_stu"  value="{{$reg->card_no}}">
 											</div>
 
 
@@ -172,7 +184,7 @@
                                         <div class="form-group">
 												<label for="exampleFormControlSelect1">Class</label>
 												<select class="form-control" id="class_stu" name="class_stu">
-                                                <option value="101">Pick up class..</option>
+                                                <option value="">{{$reg->name}}</option>
                                                 @foreach($iclass as $class)
 
 													<option value="{{$class->id}}">{{$class->name}}</option>
@@ -181,7 +193,7 @@
 											</div>
                                             <div class="form-group">
 												<label for="email2">Roll Number</label>
-												<input type="text" class="form-control" name="roll_stu" id="roll_stu" placeholder="Roll Number">
+												<input type="text" class="form-control" name="roll_stu" id="roll_stu" value="{{$reg->roll_no}}">
 											</div>
                                             <div class="form-group">
 												<label for="exampleFormControlSelect1">Shift</label>
@@ -196,7 +208,7 @@
                                             <div class="form-group">
 												<label for="exampleFormControlSelect1">Section</label>
 												<select class="form-control" id="section_stu" name="section_stu">
-                                                <option value="101">Pick up section..</option>
+                                                <option value="101"></option>
 
                                                     @foreach($section as $sec)
                                                     <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->name}}</option>

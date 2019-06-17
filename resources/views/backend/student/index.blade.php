@@ -109,9 +109,13 @@
                                             @foreach($StudentData as $Student)
 												<tr>
 													<td>
-                                                    <div class="avatar">
-												     <img src="../upload/{{$Student->photo}}" alt="..." class="avatar-img rounded-circle">
-											        </div>
+                                                        <div class="avatar">
+                                                        @if ($Student->photo)
+                                                        <img src="../upload/{{$Student->photo}}" alt="..." class="avatar-img rounded-circle">
+                                                        @else
+                                                        <img src="../upload/deafult.png" alt="..." class="avatar-img rounded-circle">
+                                                        @endif
+                                                        </div>
 											        </td>
 													<td>{{ $Student->reg_no }}</td>
                                                     <td>{{ $Student->roll_no }}</td>
