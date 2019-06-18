@@ -24,6 +24,8 @@
 							<li class="nav-item">
 								<a href="#">Edit</a>
 							</li>
+                            <li class="nav-item">
+
 						</ul>
 					</div>
 					<div class="row">
@@ -43,8 +45,8 @@
 												<small id="nameHelp2" class="form-text text-muted">We'll never share your name with anyone else.</small>
 											</div>
 											<div class="form-group">
-												<label for="password">DOB</label>
-												<input type="date" class="form-control" name="dob_stu" id="dob_stu"  Value="{{$student->dob}}">
+												<label for="password">Date Of Birth : {{$student->dob}}</label>
+												<input type="date" class="form-control" name="dob_stu" id="dob_stu"  value="{{$student->dob}}">
 											</div>
                                             <div class="form-check">
 												<label>Gender</label><br/>
@@ -182,12 +184,12 @@
 
 
                                         <div class="form-group">
-												<label for="exampleFormControlSelect1">Class</label>
+												<label for="exampleFormControlSelect1">Class : {{$reg->cls_name}}</label>
 												<select class="form-control" id="class_stu" name="class_stu">
-                                                <option value="">{{$reg->name}}</option>
+                                                <option value="">Pick one..</option>
                                                 @foreach($iclass as $class)
 
-													<option value="{{$class->id}}">{{$class->name}}</option>
+													<option value="{{$class->id}}">{{$class->cls_name}}</option>
                                                 @endforeach
 												</select>
 											</div>
@@ -206,12 +208,12 @@
 										    <div class="col-md-6 col-lg-4">
 
                                             <div class="form-group">
-												<label for="exampleFormControlSelect1">Section</label>
+												<label for="exampleFormControlSelect1">Section : {{$reg->sec_name}}</label>
 												<select class="form-control" id="section_stu" name="section_stu">
                                                 <option value="101"></option>
 
                                                     @foreach($section as $sec)
-                                                    <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->name}}</option>
+                                                    <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->sec_name}}</option>
                                                     @endforeach
                                                 </select>
 											</div>

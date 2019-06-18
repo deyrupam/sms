@@ -31,4 +31,17 @@ Route::group(['prefix'=>'student'],function(){
     Route::get('/edit/{id}','backend\StudentController@edit');
     Route::post('/update/{id}','backend\StudentController@update');
 });
+Route::group(['prefix'=>'class'],function(){
+    Route::get('/', 'backend\IClassController@index');
+    Route::get('/add', 'backend\IClassController@add');
+    Route::post('/add','backend\IClassController@store');
+    Route::get('/{id}','backend\IClassController@show');
+    Route::get('/edit/{id}','backend\IClassController@edit');
+    Route::post('/update/{id}','backend\IClassController@update');
+});
+
+Route::group(['prefix'=>'academic_year'],function(){
+    Route::get('edit/{id}', 'backend\AcademicController@edit');
+
+});
 

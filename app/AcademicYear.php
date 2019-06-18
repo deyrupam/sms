@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class AcademicYear extends Model
 {
     protected $fillable = [
-        'id', 'title','start_date','end_date'
+        'id', 'ac_title','start_date','end_date'
     ];
 }

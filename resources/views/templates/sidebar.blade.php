@@ -69,9 +69,13 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
+                                        <a href="{{ url('student/') }}">
+											<span class="sub-item">Studetnt List</span>
+										</a>
 										<a href="{{ url('student/add') }}">
 											<span class="sub-item">Add Student</span>
 										</a>
+
 									</li>
 
 								</ul>
@@ -184,11 +188,26 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a href="widgets.html">
-								<i class="fas fa-user-tie"></i>
-								<p>Administor</p>
-								<span class="badge badge-success">4</span>
+							<a data-toggle="collapse" href="#admin">
+								<i class="fas fa-id-card-alt"></i>
+								<p>Attendence</p>
+								<span class="caret"></span>
 							</a>
+							<div class="collapse" id="admin">
+								<ul class="nav nav-collapse">
+
+									<li>
+										<a href="{{url('administrative')}}/academic">
+											<span class="sub-item">Academic Year</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="icon-menu.html">
+											<span class="sub-item">Employee Attendence</span>
+										</a>
+									</li>
+								</ul>
+							</div>
 						</li>
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#submenu">

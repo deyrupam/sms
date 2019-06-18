@@ -39,7 +39,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Student</h4>
+						<h4 class="page-title">Classes</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -68,7 +68,7 @@
 								<div class="card-header">
 									<div class="d-flex align-items-center">
 										<h4 class="card-title">Add Row</h4>
-										<a href="{{url('student/add')}}" class="btn btn-primary btn-round ml-auto">
+										<a href="{{url('class/add')}}" class="btn btn-primary btn-round ml-auto">
 											<i class="fa fa-plus"></i>
                                             Add Row
                                         </a>
@@ -83,63 +83,47 @@
 											<thead>
 												<tr>
 
-                                                    <th>Photo</th>
-                                                    <th>Regno</th>
-                                                    <th>RollNO</th>
-													<th>Idcard</th>
                                                     <th>Name</th>
-                                                    <th>Mobile</>
-													<th>Email</th>
+                                                    <th>Techer Name</th>
+                                                    <th>Numeric Code</th>
 													<th>Status</th>
-													<th style="width: 10%">Action</th>
+                                                    <th style="width: 10%">Action</th>
 												</tr>
 											</thead>
 											<tfoot>
 												<tr>
-                                                    <th>Photo</th>
-                                                    <th>Regno</th>
-                                                    <th>RollNO</th>
-													<th>Idcard</th>
                                                     <th>Name</th>
-                                                    <th>Mobile</>
-													<th>Email</th>
+                                                    <th>Techer Name</th>
+                                                    <th>Numeric Code</th>
 													<th>Status</th>
 													<th>Action</th>
 												</tr>
 											</tfoot>
 											<tbody>
-                                            @foreach($StudentData as $Student)
+                                             @foreach($iclasses as $iclass)
 												<tr>
-													<td>
-                                                        <div class="avatar">
-                                                        @if ($Student->photo)
-                                                        <img src="../upload/{{$Student->photo}}" alt="..." class="avatar-img rounded-circle">
-                                                        @else
-                                                        <img src="../upload/deafult.png" alt="..." class="avatar-img rounded-circle">
-                                                        @endif
-                                                        </div>
-											        </td>
-													<td>{{ $Student->reg_no }}</td>
-                                                    <td>{{ $Student->roll_no }}</td>
-                                                    <td>{{ $Student->card_no }}</td>
-                                                    <td>{{ $Student->name }}</td>
-													<td>{{ $Student->phone_no }}</td>
-                                                    <td>{{ $Student->email }}</td>
-                                                    <td>@if($Student->status ==true)
-													active
-													@else
-													not
-													@endif
-													</td>
+
+                                                   <td>{{ $iclass->cls_name }}</td>
+
+                                                    <td>{{ $iclass->teacher_id }}</td>
+                                                    <td>{{ $iclass->numeric_value }}</td>
+                                                    <td>@if($iclass->status==1)
+                                                    <button type="button" class="btn btn-success btn-round">
+											        <i class="fa fa-check"></i>
+										             </button>
+                                                    @else
+                                                    <button type="button" class="btn btn-danger btn-round">
+											        <i class="fa fa-times"></i>
+										             </button>
+                                                    @endif</td>
+
+
                                                     <td>
 														<div class="form-button-action">
-															<a class="btn btn-link btn-primary btn-lg" href="{{url('student/edit')}}/{{ $Student->id }}">
+															<a class="btn btn-link btn-primary btn-lg" href="{{url('class/edit')}}/{{ $iclass->id }}">
                                                                 <i class="fa fa-edit"></i>
                                                             </a>
-                                                            <a class="btn btn-link btn-primary btn-lg" href="{{url('student/')}}/{{ $Student->id }}">
-                                                            <i class="fas fa-eye"></i>
-                                                            </a>
-															<a class="btn btn-link btn-danger" href="{{url('student/')}}/{{ $Student->id }}">
+															<a class="btn btn-link btn-danger" href="{{url('class/')}}/{{ $iclass->id }}">
 																<i class="fa fa-times"></i>
 															</a>
 														</div>

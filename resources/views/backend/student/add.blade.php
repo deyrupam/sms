@@ -8,7 +8,7 @@
 						<h4 class="page-title">Student</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
-								<a href="#">
+								<a href="{{url('dashboard')}}">
 									<i class="flaticon-home"></i>
 								</a>
 							</li>
@@ -16,7 +16,7 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Student</a>
+								<a href="{{url('student')}}/">Student</a>
 							</li>
 							<li class="separator">
 								<i class="flaticon-right-arrow"></i>
@@ -175,7 +175,7 @@
                                                 <option value="101">Pick up class..</option>
                                                 @foreach($iclass as $class)
 
-													<option value="{{$class->id}}">{{$class->name}}</option>
+													<option value="{{$class->id}}">{{$class->cls_name}}</option>
                                                 @endforeach
 												</select>
 											</div>
@@ -199,7 +199,7 @@
                                                 <option value="101">Pick up section..</option>
 
                                                     @foreach($section as $sec)
-                                                    <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->name}}</option>
+                                                    <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->sec_name}}</option>
                                                     @endforeach
                                                 </select>
 											</div>

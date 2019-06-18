@@ -15,7 +15,7 @@ class CreateAcademicYearsTable extends Migration
     {
         Schema::create('academic_years', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('ac_title');
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', [0,1])->default(0);

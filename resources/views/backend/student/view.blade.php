@@ -16,13 +16,13 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Tables</a>
+								<a href="{{url('student')}}/">Student</a>
 							</li>
 							<li class="separator">
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Basic Tables</a>
+								<a href="{{url('student')}}/edit/{{$student->id}}">{{$student->name}}</a>
 							</li>
 						</ul>
 					</div>
@@ -32,11 +32,15 @@
                     <div class="card">
                     <div class="item-list">
                     <div class="avatar avatar-xxl">
-											<img src="../../assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
+                                                @if ($student->photo)
+                                                <img src="/upload/{{$student->photo}}" class="avatar-img rounded-circle">
+                                                @else
+                                                <img src="/upload/deafult.png" class="avatar-img rounded-circle">
+                                                @endif
 										</div>
 											<div class="info-user ml-3">
-												<div class="username">rupa</div>
-												<div class="status">Back End Developer</div>
+												<div class="username">{{$student->name}}</div>
+												<div class="status">Class : {{$reg->cls_name}}</div>
 											</div>
 
 					</div>
@@ -51,23 +55,23 @@
 											<tr>
 
 			                                   <td colspan="2">Registration No</td>
-												<td></td>
+												<td>{{$reg->reg_no}}</td>
 											</tr>
 
                                             <tr>
 
 			                                   <td colspan="2">ID No</td>
-												<td>@twitter</td>
+												<td>{{$reg->card_no}}</td>
 											</tr>
                                             <tr>
 
 			                                   <td colspan="2">Phone</td>
-												<td>@twitter</td>
+												<td>{{$student->phone_no}}</td>
 											</tr>
                                             <tr>
 
 			                                   <td colspan="2">Email</td>
-												<td>@twitter</td>
+												<td>{{$student->email}}</td>
 											</tr>
 										</tbody>
 									</table>
@@ -88,27 +92,27 @@
 										<tbody>
 											<tr>
 												<td>Name</td>
-												<td>Rupam</td>
+												<td>{{$student->name}}</td>
 												<td>Date Of Birth</td>
-												<td>14/06/90</td>
+												<td>{{$student->dob}}</td>
 											</tr>
 											<tr>
 												<td>Gender</td>
-												<td>Male</td>
+												<td>@if($student->gender ==1)Male @else Female @endif</td>
 												<td>Relion</td>
-												<td>Hindu</td>
+												<td>{{$student->religion}}</td>
 											</tr>
                                             <tr>
 												<td>Blood Group</td>
-												<td>A+</td>
+												<td>{{$student->blood_group}}</td>
 												<td>Nationlity</td>
-												<td>Indian</td>
+												<td>{{$student->nationality}}</td>
 											</tr>
 											<tr>
-												<td>Gender</td>
-												<td>Male</td>
+												<td>Email</td>
+												<td>{{$student->email}}</td>
 												<td>Relion</td>
-												<td>Hindu</td>
+												<td>{{$student->religion}}</td>
 											</tr>
 
 										</tbody>
@@ -125,27 +129,27 @@
 										<tbody>
 											<tr>
                                                 <td >Father Name</td>
-												<td>x father</td>
+												<td>{{$student->father_name}}</td>
 												<td>Phone No</td>
-												<td>77975445</td>
+												<td>{{$student->father_phone_no}}</td>
 											</tr>
 											<tr>
                                                 <td >Mother Name</td>
-												<td>x father</td>
+												<td>{{$student->mother_name}}</td>
 												<td>Phone No</td>
-												<td>77975445</td>
+												<td>{{$student->mother_phone_no }}</td>
 											</tr>
 											<tr>
                                                 <td >guardian Name</td>
-												<td>x guardian</td>
+												<td>{{$student->guardian}}</td>
 												<td>Phone No</td>
-												<td>77975445</td>
+												<td>{{$student->guardian_phone_no}}</td>
 											</tr>
                                             <tr>
                                                 <td >Present Address</td>
-												<td>2749 Kamren Coves Apt. 531 Sipesview, </td>
+												<td>{{$student->present_address}}</td>
 												<td>Parmanent Address</td>
-												<td>8236 Valerie Union Apt. 369 Macejkovichaven,</td>
+												<td>{{$student->permanent_address	}}</td>
 											</tr>
 										</tbody>
 									</table>
@@ -162,26 +166,26 @@
 										<tbody>
 											<tr>
 												<td>Academic Year</td>
-												<td>Mark</td>
+												<td>{{$reg->ac_title}}</td>
 												<td>Registraton No</td>
-												<td>@mdo</td>
+												<td>{{$reg->reg_no}}</td>
 											</tr>
 											<tr>
 												<td>Class</td>
-												<td>Jacob</td>
+												<td>{{$reg->cls_name}}</td>
 												<td>Section</td>
-												<td>@fat</td>
+												<td>{{$reg->sec_name}}</td>
 											</tr>
 											<tr>
 												<td>Board Registration No</td>
-												<td>Jacob</td>
+												<td>{{$reg->board_regi_no}}</td>
 												<td>Card No.</td>
-												<td>@fat</td>
+												<td>{{$reg->card_no}}</td>
 
 											</tr>
                                             <tr>
                                             <td colspan="3">Status</td>
-                                            <td colspan="4">active</td>
+                                            <td colspan="4">{{$reg->status}}</td>
 
 											</tr>
 
@@ -192,6 +196,11 @@
 						</div>
 
 					</div>
+                    <div class="card-action">
+									<a  href="{{url('student')}}/{{$student->id}}" class="btn btn-primary btn-xs">Edit
+                                    <i class="fa fa-edit"></i></a>
+
+								</div>
 				</div>
 			</div>
 			<footer class="footer">

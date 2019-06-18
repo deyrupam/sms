@@ -15,12 +15,13 @@ class CreateIClassesTable extends Migration
     {
         Schema::create('i_classes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('teacher_id');
-            $table->string('name');
+            $table->bigInteger('teacher_id')->unsigned();
+            $table->string('cls_name');
             $table->integer('numeric_value');
             $table->text('note')->nullable();
             $table->enum('status', [0,1])->default(0);
             $table->timestamps();
+            $table->foreign('teacher_id')->references('id')->on('teachers');
    });
     }
 

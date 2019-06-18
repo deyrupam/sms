@@ -50,7 +50,14 @@ class StudentController extends Controller
     public function store(Request $request)
     {
 
-
+        if($request->hasFile('photo_stu')){
+            $file =$request->file('photo_stu');
+            $file->move("upload/",$file->getClientOriginalName());
+            $fileName=$file->getClientOriginalName();
+        }
+        else{
+        $fileName='default.png';
+        }
 
         $student = new Student([
             'name' => $request->name_stu,
@@ -74,16 +81,9 @@ class StudentController extends Controller
             'permanent_address' =>$request->per_address,
         ]);
         $student->save();
-        if($student){
-        if($request->hasFile('photo_stu')){
-            $file =$request->file('photo_stu');
-            $file->move("upload/",$file->getClientOriginalName());
-            $fileName=$file->getClientOriginalName();
-        }
-        else{
-        $fileName='default.png';
-        }
-        }
+
+
+
         $academic_year=AcademicYear::find(1);
 
         $regNo=mt_rand(190000,199999);
@@ -117,13 +117,29 @@ class StudentController extends Controller
     public function show($id)
     {
 
+                 $student = DB::table('students')->find($id);
 
-            $student = DB::table('students')
-            ->join('registrations', 'students.id', '=', 'registrations.student_id')
-            ->where('students.id','=', $id)
-            ->select('students.*','registrations.reg_no')
-            ->get();
-            return view('backend.student.view',$student);
+
+                $electives = DB::table('subjects')->get()
+                   ->where('type', 'Electives');
+
+              $reg = Registration::where('student_id', $id)
+              ->join('i_classes', 'registrations.class_id', '=', 'i_classes.id')
+              ->join('academic_years', 'registrations.academic_year_id', '=', 'academic_years.id')
+              ->join('sections', 'registrations.section_id', '=', 'sections.id')
+              ->select('registrations.reg_no','registrations.roll_no',
+              'registrations.card_no','registrations.status',
+              'registrations.board_regi_no','registrations.academic_year_id',
+                'i_classes.id','i_classes.cls_name','academic_years.ac_title','sections.sec_name')
+
+              ->first();
+
+
+              return view('backend.student.view',
+              ['student' =>$student,
+               'reg'=>$reg ,
+               ]);
+
 
 
 
@@ -153,8 +169,10 @@ class StudentController extends Controller
 
               $reg = Registration::where('student_id', $id)
               ->join('i_classes', 'registrations.class_id', '=', 'i_classes.id')
-              ->select('registrations.reg_no','registrations.roll_no','registrations.card_no','registrations.status',
-                'i_classes.id','i_classes.name')
+              ->join('sections', 'registrations.section_id', '=', 'sections.id')
+              ->select('registrations.reg_no','registrations.roll_no','registrations.card_no',
+              'registrations.status','registrations.board_regi_no',
+                'i_classes.id','i_classes.cls_name','sections.sec_name')
 
               ->first();
 
@@ -205,7 +223,7 @@ class StudentController extends Controller
             ->update([
             'name' => $request->name_stu,
             'dob' => $request->dob_stu,
-            'dob' => $request->gender_stu,
+            'gender' => $request->gender_stu,
             'religion' =>$request->religion_stu,
             'blood_group' =>$request->bgroup_stu,
             'nationality' =>$request->nationlity_stu,

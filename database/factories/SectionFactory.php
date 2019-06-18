@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Section::class, function (Faker $faker) {
     return [
-            'name' =>$faker->randomElement($array = array ('A','B','C')),
+            'sec_name' =>$faker->randomElement($array = array ('A','B','C')),
             'capacity' =>$faker->randomElement($array = array ('20','50','50')),
             'class_id' =>function(){
                 return App\IClass::all()->random();
