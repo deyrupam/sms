@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers\backend;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\IClass;
@@ -10,6 +9,7 @@ use DB;
 class IClassController extends Controller
 {
     public function index(){
+
 
         $iclasses = DB::table('i_classes')->get();
                     // ->join('teachers', 'i_classes.teacher_id', '=', 'teachers.id')
@@ -29,12 +29,6 @@ class IClassController extends Controller
 
         return view('backend.iclass.edit',['iclass'=>$iclass]);
     }
-    public function store(Request $request){
-
-    }
-    public function destroy($id){
-
-    }
     public function update(Request $request,$id){
         DB::table('i_classes')
         ->where('id', $id)
@@ -48,5 +42,26 @@ class IClassController extends Controller
         return Redirect::back()->with('success', 'Record updated successfully!');;
 
     }
+    public function add()
+    {
 
+        $teachers = DB::table('teachers')->get();
+        return view('backend.iclass.add',['teachers'=>$teachers]);
+    }
+    public function store(Request $request){
+
+        return $request ; die;
+        $section = new IClass([
+            'cls_name' => $request->cls_name,
+            'numeric_value' => $request->cls_numeric_value,
+            'teacher_id' => $request->cls_teacher,
+            'note' =>$request->cls_note,
+            'status' =>$request->cls__status
+             ]);
+        $section->save();
+    }
+
+    public function destroy($id){
+
+    }
 }

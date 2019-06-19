@@ -112,17 +112,17 @@
 							<div class="collapse" id="forms">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="forms/forms.html">
-											<span class="sub-item">Class</span>
+										<a href="{{url('iclass')}}">
+											<span class="sub-item">Classes</span>
 										</a>
 									</li>
                                     <li>
-										<a href="forms/forms.html">
+										<a href="{{url('section')}}/">
 											<span class="sub-item">Section</span>
 										</a>
 									</li>
                                     <li>
-										<a href="forms/forms.html">
+										<a href="{{url('section')}}/">
 											<span class="sub-item">Subject</span>
 										</a>
 									</li>
@@ -190,14 +190,14 @@
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#admin">
 								<i class="fas fa-id-card-alt"></i>
-								<p>Attendence</p>
+								<p>Administrative</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="admin">
 								<ul class="nav nav-collapse">
 
 									<li>
-										<a href="{{url('administrative')}}/academic">
+										<a href="{{url('academic_year')}}/">
 											<span class="sub-item">Academic Year</span>
 										</a>
 									</li>

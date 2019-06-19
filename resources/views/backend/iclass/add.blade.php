@@ -4,7 +4,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Academic </h4>
+						<h4 class="page-title">Class</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -15,13 +15,13 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Year</a>
+								<a href="{{url('iclass')}}">Class</a>
 							</li>
 							<li class="separator">
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Edit</a>
+								<a href="#">Add</a>
 							</li>
                             <li class="nav-item">
 
@@ -33,31 +33,21 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">Academic Year</div>
+									<div class="card-title">Class : Add</div>
 								</div>
-                                <form method="post" action="#" enctype="multipart/form-data">
+                                <form method="post" action="{{url('iclass/save')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 									<div class="row">
 										<div class="col-md-6 col-lg-4">
 											<div class="form-group">
-												<label for="email2"> Title</label>
-												<input type="text" class="form-control" name="cls_name"   id="cls_name" value="{{$academic->ac_title}}">
-												<small id="nameHelp2" class="form-text text-muted"></small>
+												<label for="email2"> Class Name</label>
+												<input type="text" class="form-control" name="cls_name"   id="cls_name" placeholder="Class Name">
+												<small id="nameHelp2" class="form-text text-muted">Class name</small>
 											</div>
 											<div class="form-group">
-												<label for="exampleFormControlSelect1">status</label>
-
-												<select class="form-control" id="aca_status" name="aca_status">
-                                                @if($academic->status==1)
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
-                                                @else
-                                                <option value="0">Inactive</option>
-                                                <option value="1">Active</option>
-                                                @endif
-
-                                                </select>
+												<label for="password"> Numeric value</label>
+												<input type="text" class="form-control" name="cls_numeric_value" id="cls_numeric_value"  placeholder="Class numeric value">
 											</div>
 
 
@@ -66,14 +56,29 @@
 
 
                                         <div class="form-group">
-												<label for="password"> Start Date</label>
-												<input type="date" class="form-control" name="aca_start_date" id="aca_start_date"  value="{{$academic->start_date}}">
+												<label for="email2">Teacher ID</label>
+												<select class="form-control" id="cls_teacher" name="cls_teacher">
+                                                @foreach($teachers as $teacher)
+                                                <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                                @endforeach
+                                               </select>
 											</div>
                                             <div class="form-group">
-												<label for="email2">End Date</label>
-												<input type="date" class="form-control" name="aca_start_end" id="aca_start_end" value="{{$academic->end_date}}">
+												<label for="password"> Note</label>
+												<input type="text" class="form-control" name="cls_note" id="cls_note"  placeholder="Note">
 											</div>
 
+                                            <div class="form-group">
+												<label for="exampleFormControlSelect1">status</label>
+
+												<select class="form-control" id="cls__status" name="cls__status">
+
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+
+
+                                                </select>
+											</div>
                                         </div>
 
 									</div>

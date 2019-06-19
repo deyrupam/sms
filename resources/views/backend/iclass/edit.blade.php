@@ -15,7 +15,7 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="{{url('class')}}">Class</a>
+								<a href="{{url('iclass')}}">Class</a>
 							</li>
 							<li class="separator">
 								<i class="flaticon-right-arrow"></i>
@@ -35,7 +35,7 @@
 								<div class="card-header">
 									<div class="card-title">Class Info:</div>
 								</div>
-                                <form method="post" action="{{url('class/update')}}/{{$iclass->id}}" enctype="multipart/form-data">
+                                <form method="post" action="{{url('iclass/update')}}/{{$iclass->id}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 									<div class="row">

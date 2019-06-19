@@ -276,4 +276,9 @@ class StudentController extends Controller
             'electives'=>$electives
             ]);
     }
+    public function stutAttendenceView($id)
+    {
+        return view('backend.student.viewattendence');
+    }
+
 }

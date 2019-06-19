@@ -39,7 +39,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Classes</h4>
+						<h4 class="page-title">Academic</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -68,7 +68,7 @@
 								<div class="card-header">
 									<div class="d-flex align-items-center">
 										<h4 class="card-title">Add Row</h4>
-										<a href="{{url('class/add')}}" class="btn btn-primary btn-round ml-auto">
+										<a href="#" class="btn btn-primary btn-round ml-auto">
 											<i class="fa fa-plus"></i>
                                             Add Row
                                         </a>
@@ -83,31 +83,32 @@
 											<thead>
 												<tr>
 
-                                                    <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
+                                                    <th>Title</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
 													<th>Status</th>
                                                     <th style="width: 10%">Action</th>
 												</tr>
 											</thead>
 											<tfoot>
 												<tr>
-                                                    <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
+                                                <th>Title</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
 													<th>Status</th>
 													<th>Action</th>
 												</tr>
 											</tfoot>
 											<tbody>
-                                             @foreach($iclasses as $iclass)
+                                             @foreach($academics as $academic)
 												<tr>
 
-                                                   <td>{{ $iclass->cls_name }}</td>
+                                                   <td>{{ $academic->ac_title }}</td>
 
-                                                    <td>{{ $iclass->teacher_id }}</td>
-                                                    <td>{{ $iclass->numeric_value }}</td>
-                                                    <td>@if($iclass->status==1)
+
+                                                    <td>{{ $academic->start_date }}</td>
+                                                    <td>{{ $academic->end_date }}</td>
+                                                    <td>@if($academic->status==1)
                                                     <button type="button" class="btn btn-success btn-round">
 											        <i class="fa fa-check"></i>
 										             </button>
@@ -120,10 +121,10 @@
 
                                                     <td>
 														<div class="form-button-action">
-															<a class="btn btn-link btn-primary btn-lg" href="{{url('iclass/edit')}}/{{ $iclass->id }}">
+															<a class="btn btn-link btn-primary btn-lg" href="{{url('academic_year/edit')}}/{{ $academic->id }}">
                                                                 <i class="fa fa-edit"></i>
                                                             </a>
-															<a class="btn btn-link btn-danger" href="{{url('iclass/')}}/{{ $iclass->id }}">
+															<a class="btn btn-link btn-danger" href="{{url('academic/')}}/{{ $academic->id }}">
 																<i class="fa fa-times"></i>
 															</a>
 														</div>

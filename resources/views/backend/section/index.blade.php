@@ -39,7 +39,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Classes</h4>
+						<h4 class="page-title">Section</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -84,30 +84,33 @@
 												<tr>
 
                                                     <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
+                                                    <th>Capacity</th>
+                                                    <th>Class</th>
+													<th>Teacher</th>
+                                                    <th>Status</th>
                                                     <th style="width: 10%">Action</th>
 												</tr>
 											</thead>
 											<tfoot>
 												<tr>
-                                                    <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
+                                                <th>Name</th>
+                                                    <th>Capacity</th>
+                                                    <th>Class</th>
+													<th>Teacher</th>
+                                                    <th>Status</th>
 													<th>Action</th>
 												</tr>
 											</tfoot>
 											<tbody>
-                                             @foreach($iclasses as $iclass)
+                                             @foreach($sections as $section)
 												<tr>
 
-                                                   <td>{{ $iclass->cls_name }}</td>
+                                                   <td>{{ $section->sec_name }}</td>
 
-                                                    <td>{{ $iclass->teacher_id }}</td>
-                                                    <td>{{ $iclass->numeric_value }}</td>
-                                                    <td>@if($iclass->status==1)
+                                                    <td>{{ $section->capacity }}</td>
+                                                    <td>{{ $section->class_id }}</td>
+                                                    <td>{{ $section->teacher_id }}</td>
+                                                    <td>@if($section->status==1)
                                                     <button type="button" class="btn btn-success btn-round">
 											        <i class="fa fa-check"></i>
 										             </button>
@@ -120,10 +123,10 @@
 
                                                     <td>
 														<div class="form-button-action">
-															<a class="btn btn-link btn-primary btn-lg" href="{{url('iclass/edit')}}/{{ $iclass->id }}">
+															<a class="btn btn-link btn-primary btn-lg" href="{{url('section/edit')}}/{{ $section->id }}">
                                                                 <i class="fa fa-edit"></i>
                                                             </a>
-															<a class="btn btn-link btn-danger" href="{{url('iclass/')}}/{{ $iclass->id }}">
+															<a class="btn btn-link btn-danger" href="{{url('section/')}}/{{ $section->id }}">
 																<i class="fa fa-times"></i>
 															</a>
 														</div>

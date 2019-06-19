@@ -39,7 +39,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Classes</h4>
+						<h4 class="page-title">Attenc</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -50,7 +50,7 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">List</a>
+								<a href="#">View</a>
 							</li>
 
 
@@ -64,16 +64,7 @@
 
 
 						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<div class="d-flex align-items-center">
-										<h4 class="card-title">Add Row</h4>
-										<a href="{{url('class/add')}}" class="btn btn-primary btn-round ml-auto">
-											<i class="fa fa-plus"></i>
-                                            Add Row
-                                        </a>
-									</div>
-								</div>
+
 								<div class="card-body">
 									<!-- Modal -->
 
@@ -83,53 +74,26 @@
 											<thead>
 												<tr>
 
-                                                    <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
+                                                    <th>Date</th>
+                                                    <th>Status</th>
                                                     <th style="width: 10%">Action</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-                                                    <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
+
 											<tbody>
-                                             @foreach($iclasses as $iclass)
+
 												<tr>
 
-                                                   <td>{{ $iclass->cls_name }}</td>
-
-                                                    <td>{{ $iclass->teacher_id }}</td>
-                                                    <td>{{ $iclass->numeric_value }}</td>
-                                                    <td>@if($iclass->status==1)
-                                                    <button type="button" class="btn btn-success btn-round">
-											        <i class="fa fa-check"></i>
-										             </button>
-                                                    @else
-                                                    <button type="button" class="btn btn-danger btn-round">
-											        <i class="fa fa-times"></i>
-										             </button>
-                                                    @endif</td>
 
 
-                                                    <td>
-														<div class="form-button-action">
-															<a class="btn btn-link btn-primary btn-lg" href="{{url('iclass/edit')}}/{{ $iclass->id }}">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>
-															<a class="btn btn-link btn-danger" href="{{url('iclass/')}}/{{ $iclass->id }}">
-																<i class="fa fa-times"></i>
-															</a>
-														</div>
-													</td>
+                                                    <td>12/03/2019</td>
+                                                    <td>present</td>
+                                                    <td>Change</td>
+
+
+
                                                 </tr>
-                                                @endforeach
+
 												</tbody>
 										</table>
 									</div>

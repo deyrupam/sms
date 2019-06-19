@@ -39,7 +39,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Classes</h4>
+						<h4 class="page-title">Section</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -65,18 +65,53 @@
 
 						<div class="col-md-12">
 							<div class="card">
-								<div class="card-header">
-									<div class="d-flex align-items-center">
-										<h4 class="card-title">Add Row</h4>
-										<a href="{{url('class/add')}}" class="btn btn-primary btn-round ml-auto">
-											<i class="fa fa-plus"></i>
-                                            Add Row
-                                        </a>
-									</div>
+                            <div class="row">
+								<div class="col-md-6 col-lg-4">
+                                <form method="GET" action="{{ url('attend')}}" enctype="multipart/form-data">
+                                        <div class="form-group">
+												<label for="exampleFormControlSelect1">Class</label>
+												<select class="form-control" id="class_stu" name="class_stu">
+                                                <option value="101">Pick up class..</option>
+                                                @foreach($iclasses as $class)
+
+													<option value="{{$class->id}}">{{$class->cls_name}}</option>
+                                                @endforeach
+												</select>
+										</div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+
+                                            <div class="form-group">
+												<label for="exampleFormControlSelect1">Section</label>
+												<select class="form-control" id="section_stu" name="section_stu">
+                                                <option value="101">Pick up section..</option>
+
+                                                    @foreach($sections as $sec)
+                                                    <option class="sectionName id{{$sec->class_id}}" value="{{$sec->id}}">{{$sec->sec_name}}</option>
+                                                    @endforeach
+                                                </select>
+										   </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+
+                                            <div class="form-group">
+                                            <label for="email2">Date </label>
+												<input type="date" class="form-control" name="attend_date" id="attend_date" >
+										   </div>
+                                </div>
+                           </div>
+                           <div class="card-action">
+									<button type="submit" id="get_stu_attend" class="btn btn-success">Go</button>
+
 								</div>
+                           </form>
+								</div>
+                                 </form>
 								<div class="card-body">
 									<!-- Modal -->
-
+                                    <div class="card-header">
+									<div class="card-title"></div>
+								    </div>
 
 									<div class="table-responsive">
 										<table id="add-row" class="display table table-striped table-hover" >
@@ -84,52 +119,30 @@
 												<tr>
 
                                                     <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
                                                     <th style="width: 10%">Action</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-                                                    <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
+
 											<tbody>
-                                             @foreach($iclasses as $iclass)
+                                            <form>
+                                            @foreach($student as $stu)
 												<tr>
 
-                                                   <td>{{ $iclass->cls_name }}</td>
-
-                                                    <td>{{ $iclass->teacher_id }}</td>
-                                                    <td>{{ $iclass->numeric_value }}</td>
-                                                    <td>@if($iclass->status==1)
-                                                    <button type="button" class="btn btn-success btn-round">
-											        <i class="fa fa-check"></i>
-										             </button>
-                                                    @else
-                                                    <button type="button" class="btn btn-danger btn-round">
-											        <i class="fa fa-times"></i>
-										             </button>
-                                                    @endif</td>
-
-
-                                                    <td>
+                                                   <td>{{ $stu->name}}</td>
+                                                   <td>
 														<div class="form-button-action">
-															<a class="btn btn-link btn-primary btn-lg" href="{{url('iclass/edit')}}/{{ $iclass->id }}">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>
-															<a class="btn btn-link btn-danger" href="{{url('iclass/')}}/{{ $iclass->id }}">
-																<i class="fa fa-times"></i>
-															</a>
+                                                        <input class="form-radio-input" type="radio" name="attend{{ $stu->id}}" checked=""  value="1">
+													    <i class="form-radio-input btn-primary btn-round">Presnt</i>
+                                                        <input class="form-radio-input" type="radio" name="attend{{ $stu->id}}"   value="0">
+													    <i class="form-radio-input btn-danger">Absent</i>
 														</div>
 													</td>
+
+
                                                 </tr>
                                                 @endforeach
+                                                </form>
+
 												</tbody>
 										</table>
 									</div>
@@ -213,6 +226,10 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
     <script src="{{  url('assets/js/setting-demo.js') }}"></script>
     <script src="{{  url('assets/js/main.js') }}"></script>
+
+
+
+
     <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({

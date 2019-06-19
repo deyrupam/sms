@@ -39,7 +39,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Classes</h4>
+						<h4 class="page-title">Section</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -64,16 +64,7 @@
 
 
 						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<div class="d-flex align-items-center">
-										<h4 class="card-title">Add Row</h4>
-										<a href="{{url('class/add')}}" class="btn btn-primary btn-round ml-auto">
-											<i class="fa fa-plus"></i>
-                                            Add Row
-                                        </a>
-									</div>
-								</div>
+
 								<div class="card-body">
 									<!-- Modal -->
 
@@ -84,52 +75,26 @@
 												<tr>
 
                                                     <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
                                                     <th style="width: 10%">Action</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-                                                    <th>Name</th>
-                                                    <th>Techer Name</th>
-                                                    <th>Numeric Code</th>
-													<th>Status</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
+
 											<tbody>
-                                             @foreach($iclasses as $iclass)
+
 												<tr>
 
-                                                   <td>{{ $iclass->cls_name }}</td>
-
-                                                    <td>{{ $iclass->teacher_id }}</td>
-                                                    <td>{{ $iclass->numeric_value }}</td>
-                                                    <td>@if($iclass->status==1)
-                                                    <button type="button" class="btn btn-success btn-round">
-											        <i class="fa fa-check"></i>
-										             </button>
-                                                    @else
-                                                    <button type="button" class="btn btn-danger btn-round">
-											        <i class="fa fa-times"></i>
-										             </button>
-                                                    @endif</td>
-
-
-                                                    <td>
+                                                   <td>dsf</td>
+                                                   <td>
 														<div class="form-button-action">
-															<a class="btn btn-link btn-primary btn-lg" href="{{url('iclass/edit')}}/{{ $iclass->id }}">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>
-															<a class="btn btn-link btn-danger" href="{{url('iclass/')}}/{{ $iclass->id }}">
-																<i class="fa fa-times"></i>
-															</a>
+                                                        <input class="form-radio-input" type="radio" name="gender_stu" checked=""  value="1">
+													    <i class="form-radio-input btn-primary btn-round">Present</i>
+                                                        <input class="form-radio-input" type="radio" name="gender_stu"   value="0">
+													    <i class="form-radio-input btn-danger btn-round">Absent</i>
 														</div>
 													</td>
+
                                                 </tr>
-                                                @endforeach
+
 												</tbody>
 										</table>
 									</div>

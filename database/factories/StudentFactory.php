@@ -12,11 +12,9 @@ $factory->define(student::class, function (Faker $faker) {
         'name' => $faker->name,
         'dob' => $faker->date($format = 'Y-m-d',$max = 'now'),
 
-            'religion' =>$faker->word,
+            'religion' =>$faker->randomElement($array = array ('Hinduism','OBuddhism','Christianity','Islam','Sikhism')),
             'blood_group' =>$faker->randomElement($array = array ('B+','O+','A+')),
-            'nationality' =>$faker->randomElement($array = array ('Hinduism','OBuddhism','Christianity','Islam','Sikhism')),
-
-            'photo' =>$faker->word,
+            'nationality' =>$faker->randomElement($array = array ('Indian')),
             'email' =>$faker->email,
             'phone_no' =>$faker->e164PhoneNumber,
             'note' =>$faker->text,

@@ -22,7 +22,13 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="{{url('student')}}/edit/{{$student->id}}">{{$student->name}}</a>
+								<a href="{{url('student')}}/edit/{{$student->id}}">Profile</a>
+							</li>
+                            <li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+                            <li class="nav-item">
+								<a href="{{url('student/attendence')}}/{{$student->id}}">Attendence</a>
 							</li>
 						</ul>
 					</div>
