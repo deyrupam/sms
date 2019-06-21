@@ -130,7 +130,7 @@ input:checked + .slider:before {
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-4">
-                                        <form method="GET" action="{{ url('attend')}}" enctype="multipart/form-data">
+                                        <form method="GET" action="{{ url('attend')}}/add" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Class</label>
                                                 <select class="form-control" id="class_stu" name="class_stu">
@@ -182,6 +182,9 @@ input:checked + .slider:before {
                                             <tr>
 
                                                 <th>Name</th>
+                                                <th>Rollno</th>
+                                                <th>Class</th>
+                                                <th>Section</th>
                                                 <th style="width: 10%">Action</th>
                                             </tr>
                                         </thead>
@@ -195,18 +198,22 @@ input:checked + .slider:before {
                                             @foreach($student as $stu)
                                                 <tr>
 
-                                                    <td>{{ $stu->name}}</td>
+                                                    <td>{{$stu->name}}</td>
+                                                    <td>{{$stu->roll_no}}</td>
+                                                    <td>{{$stu->class_id}}</td>
+                                                    <td>{{$stu->section_id}}</td>
+                                                    <td></td>
                                                     <td>
-                                                        <div class="form-button-action">
-                                                            <input type="hidden" class="form-control" name="total_student" id="total_student" value="{{ $totalstu}}">
-                                                            <input type="hidden" class="form-control" name="student_id[]" id="student_id_{{ $stu->id}}" value="{{ $stu->id}}">
-                                                            <label class="switch">
-                                                                <input type="checkbox" name="attendence[]" checked value="1">
-                                                                 <span class="slider round"></span>
-                                                                </label>
-
-                                                        </div>
-                                                    </td>
+                                                    <div class="form-button-action">
+                                                    <input type="hidden" class="form-control" name="student_id[]" id="" value="{{$stu->id}}">
+                                                     </div>
+                                                    <div class="form-group">
+												    <label for="exampleFormControlSelect1">Status</label>
+												    <select class="form-control" id="attendence[]" name="attendence[]">
+                                                    <option value="1">P</option>
+                                                    <option value="0">A</option>
+                                                    </select>
+											       </div></td>
 
                                                 </tr>
                                                 @endforeach
@@ -214,10 +221,12 @@ input:checked + .slider:before {
 
                                                     <td>
                                                         <div class="card-action">
+                                                        <input type="hidden" class="form-control" name="select_class_id" value="{{$select_class}}">
+                                                        <input type="hidden" class="form-control" name="select_section_id" value="{{$select_section}}">
                                                             <button type="submit" class="btn btn-success">Save</button>
 
                                                         </div>
-                                                    </td>
+                                                    </<input>
                                                 </tr>
 
                                             </tbody>

@@ -55,27 +55,13 @@ Route::group(['prefix'=>'section'],function(){
     Route::post('/update/{id}','backend\SectionController@update');
 
 });
-Route::group(['prefix'=>'attend'],function(){
-    Route::get('/', 'backend\AttController@index');
-    Route::get('/add', 'backend\AttendenceController@add');
-    Route::post('/save','backend\AttendenceController@store');
-    Route::get('/{id}','backend\AttendenceController@show');
-    Route::get('/edit/{id}','backend/AttendenceController@edit');
-    Route::post('/update/{id}','backend/bAttendenceController@update');
-
-});
 
 Route::group(['prefix'=>'attend'],function(){
     Route::get('/', 'backend\AttendenceController@index');
+    Route::post('/save', 'backend\AttendenceController@store');
     Route::get('/add', 'backend\AttendenceController@add');
-    Route::post('/save','backend\AttendenceController@store');
-    Route::get('/{id}','backend\AttendenceController@show');
-    Route::get('/edit/{id}','backend/AttendenceController@edit');
-    Route::post('/update/{id}','backend/bAttendenceController@update');
-
 });
 
-Route::get('attend-student','backend\AttendenceController@getD');
 
 
 
