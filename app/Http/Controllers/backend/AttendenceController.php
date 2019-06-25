@@ -14,28 +14,44 @@ class AttendenceController extends Controller
     public function index(Request $request){
 
 
-     $iclass = DB::table('i_classes')->get();
-     $section = DB::table('sections')->get();
-     $attend_date=$request->attend_date;
+        // $attend_date=$request->attend_date;
 
-     $student = DB::table('students')
-        ->join('registrations', 'registrations.student_id', '=', 'students.id')
-        ->where('class_id',$request->class_stu)
-        ->where('section_id',$request->section_stu)
-        ->select('students.name','students.id','registrations.class_id','registrations.section_id','registrations.roll_no')
+
+        //  $iclass = DB::table('i_classes')->get();
+        //  $section = DB::table('sections')->get();
+
+
+        $attend_date="2019-06-07";
+        $attendenRow = DB::table('attendences')
+        ->where('attend_date',$attend_date)
+        ->where('cls_id',1)
+        ->where('sec_id',2)
         ->get();
 
+        // $studentList=DB::table('students')
+        // ->join('registrations', 'registrations.student_id', '=', 'students.id')
+        // ->join('i_classes', 'registrations.class_id', '=', 'i_classes.id')
+        // ->join('sections', 'registrations.section_id', '=', 'sections.id')
+        // ->where('registrations.class_id',$request->class_stu)
+        // ->where('registrations.section_id',$request->section_stu)
+        // ->select('students.id','students.name','registrations.roll_no','i_classes.cls_name','sections.sec_name')
+        // ->get();
 
 
 
-        return view('backend.attend.index',
-        [
-         'student' =>$student,
-         'iclasses'=>$iclass,
-         'sections'=>$section,
-         'attend_date'=>$attend_date,
+        // //return $attendenRow;
 
-        ]);
+        // return view('backend.attend.index',
+        // [
+        //  'student' =>$studentList ,
+        //  'iclasses'=>$iclass,
+        //  'sections'=>$section,
+        //  'attend_date'=>$attend_date,
+        //  'select_class'=>$request->class_stu,
+        //  'select_section'=>$request->section_stu,
+
+        // ]);
+
 
     }
 
@@ -60,9 +76,11 @@ class AttendenceController extends Controller
 
      $student = DB::table('students')
         ->join('registrations', 'registrations.student_id', '=', 'students.id')
-        ->where('class_id',$request->class_stu)
-        ->where('section_id',$request->section_stu)
-        ->select('students.id','students.name','students.id','registrations.class_id','registrations.section_id','registrations.roll_no')
+        ->join('i_classes', 'registrations.class_id', '=', 'i_classes.id')
+        ->join('sections', 'registrations.section_id', '=', 'sections.id')
+        ->where('registrations.class_id',$request->class_stu)
+        ->where('registrations.section_id',$request->section_stu)
+       ->select('students.id','students.name','students.id','registrations.roll_no','i_classes.cls_name','sections.sec_name')
         ->get();
 
 
@@ -78,41 +96,27 @@ class AttendenceController extends Controller
         ]);
     }
     public function store(Request $request){
+        $i=0;
 
-        function Combine($array1, $array2){
-            return(array_combine($array1, $array2));
-        }
-
-        $cls=$request->select_class_id;
-        $sec=$request->select_section_id;
-
-        $stu_Ids =$request->student_id;
-        $attend_status =$request->attendence;
-        $allAttendence=Combine($stu_Ids, $attend_status);
-
-        $attendenceData=[
-            'class'=>$cls,
-            'section'=>$sec,
-            'data'=>$allAttendence
-        ];
-        $jsonDataAttend = json_encode($attendenceData);
+        $students=$request->student_id;
+        foreach($students as $stu){
 
 
-        $attendRecord = new Attendence([
-            'attend_date' => $request->date_of_attendence,
-            'dataAttendence' =>$jsonDataAttend ,
-            'cls_id' => $cls,
-            'sec_id' =>$sec,
-
+            $attendenceRecord = new Attendence([
+                'attend_date' => $request->date_of_attendence,
+                'status' => $request->status[$i],
+                'student_id' => $request->student_id[$i],
+                'cls_id' =>$request->select_class_id,
+                'sec_id' =>$request->select_section_id,
             ]);
-        $attendRecord->save();
-        return redirect('attend/add')->with('success', 'Saved Records');
+            $attendenceRecord->save();
+            $i=$i+1;
 
 
 
-
-
-    }
+        }
+        return redirect('attend/add')->with('success', 'Saved Successfully');
+      }
 
 
 

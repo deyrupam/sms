@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Attendence extends Model
 {
     protected $fillable = [
-        'id', 'attend_date','dataAttendence','cls_id','sec_id'
+        'id', 'attend_date','status','student_id','cls_id','sec_id'
     ];
 }

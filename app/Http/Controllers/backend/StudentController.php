@@ -278,7 +278,64 @@ class StudentController extends Controller
     }
     public function stutAttendenceView($id)
     {
-        return view('backend.student.viewattendence');
+
+        function attendingPercentage($id){
+
+            $totalStrength = DB::table('attendences')
+            ->where('student_id','=',$id)
+            ->count();
+            $attendanceStrength= DB::table('attendences')
+            ->where('student_id','=',$id)
+            ->where('status','=','1')
+            ->count();
+
+
+            $atten=$attendanceStrength*100/$totalStrength;
+            $attendingPercentage=(round($atten));
+            return  [$attendingPercentage,$totalStrength];
+
+        }
+
+
+
+
+        $student = DB::table('students')->find($id);
+
+
+
+
+              $reg = Registration::where('student_id', $id)
+              ->join('i_classes', 'registrations.class_id', '=', 'i_classes.id')
+              ->join('sections', 'registrations.section_id', '=', 'sections.id')
+              ->select('registrations.reg_no','registrations.roll_no',
+              'registrations.card_no',
+              'registrations.board_regi_no',
+              'i_classes.cls_name','sections.sec_name')->first();
+
+
+
+
+         $attendData = DB::table('attendences')
+        ->where('student_id',$id)
+        ->select('attendences.attend_date','attendences.status','attendences.student_id')
+        ->get();
+
+
+
+          $attendingPercentage=attendingPercentage($id);
+
+
+
+
+        return view('backend.student.viewattendence',[
+            "dataAttendence"=>$attendData,
+            'student' =>$student,
+            'reg'=>$reg ,
+             'attendingPercent'=>$attendingPercentage
+        ]);
+
+
     }
+
 
 }

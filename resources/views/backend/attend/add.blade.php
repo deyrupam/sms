@@ -172,10 +172,10 @@ input:checked + .slider:before {
 
                             <div class="card-body">
                                 <!-- Modal -->
-                                <div class="card-header">
-                                    <div class="card-title"></div>
-                                </div>
 
+                                <p>Date : {{$attend_date}} <li class="separator">
+                                <i class="flaticon-right-arrow"></i>
+                            </li>   </p>
                                 <div class="table-responsive">
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
@@ -191,25 +191,22 @@ input:checked + .slider:before {
                                         <form method="POST" action="{{url('attend')}}/save" enctype="multipart/form-data"  >
                                         @csrf
                                             <tbody>
-                                            <tr>
-                                            <td><input type="hidden" class="form-control" name="date_of_attendence" id="date_of_attendence" value="{{$attend_date}}">
-                                                </td>
-                                            </tr>
+
                                             @foreach($student as $stu)
                                                 <tr>
 
                                                     <td>{{$stu->name}}</td>
                                                     <td>{{$stu->roll_no}}</td>
-                                                    <td>{{$stu->class_id}}</td>
-                                                    <td>{{$stu->section_id}}</td>
+                                                    <td>{{$stu->cls_name}}</td>
+                                                    <td>{{$stu->sec_name}}</td>
                                                     <td></td>
                                                     <td>
                                                     <div class="form-button-action">
                                                     <input type="hidden" class="form-control" name="student_id[]" id="" value="{{$stu->id}}">
-                                                     </div>
+                                                    </div>
                                                     <div class="form-group">
 												    <label for="exampleFormControlSelect1">Status</label>
-												    <select class="form-control" id="attendence[]" name="attendence[]">
+												    <select class="form-control" id="status[]" name="status[]">
                                                     <option value="1">P</option>
                                                     <option value="0">A</option>
                                                     </select>
@@ -223,6 +220,7 @@ input:checked + .slider:before {
                                                         <div class="card-action">
                                                         <input type="hidden" class="form-control" name="select_class_id" value="{{$select_class}}">
                                                         <input type="hidden" class="form-control" name="select_section_id" value="{{$select_section}}">
+                                                        <input type="hidden" class="form-control" name="date_of_attendence" id="date_of_attendence" value="{{$attend_date}}">
                                                             <button type="submit" class="btn btn-success">Save</button>
 
                                                         </div>

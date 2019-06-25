@@ -181,47 +181,46 @@ input:checked + .slider:before {
                                         <thead>
                                             <tr>
 
+
+
                                                 <th>Name</th>
+                                                <th>Rollno</th>
+                                                <th>Class</th>
+                                                <th>Section</th>
                                                 <th style="width: 10%">Action</th>
                                             </tr>
                                         </thead>
-                                        <form method="POST" action="{{url('attend')}}/save" enctype="multipart/form-data"  >
-                                        @csrf
+
+
                                             <tbody>
-                                            <tr>
-                                            <td><input type="hidden" class="form-control" name="date_of_attendence" id="date_of_attendence" value="{{$attend_date}}">
-                                                </td>
-                                            </tr>
+
                                             @foreach($student as $stu)
                                                 <tr>
 
-                                                    <td>{{ $stu->name}}</td>
-                                                    <td>
-                                                        <div class="form-button-action">
-                                                            <input type="hidden" class="form-control" name="total_student" id="total_student" value="{{ $totalstu}}">
-                                                            <input type="hidden" class="form-control" name="student_id[]" id="student_id_{{ $stu->id}}" value="{{ $stu->id}}">
-                                                            <label class="switch">
-                                                                <input type="checkbox" name="attendence[]" checked value="1">
-                                                                 <span class="slider round"></span>
-                                                                </label>
 
-                                                        </div>
-                                                    </td>
+
+                                                    <td>{{$stu->name}}</td>
+                                                    <td>{{$stu->roll_no}}</td>
+                                                    <td>{{$stu->cls_name}}</td>
+                                                    <td>{{$stu->sec_name}}</td>
+                                                    <td>
+                                                    <div class="form-button-action">
+                                                    <input type="hidden" class="form-control" name="student_id[]" id="" value="{{$stu->id}}">
+                                                     </div>
+                                                    <div class="form-group">
+												    <label for="exampleFormControlSelect1">Status</label>
+												    <select class="form-control" id="attendence[]" name="attendence[]">
+                                                    <option value="1">P</option>
+
+                                                    </select>
+											       </div></td>
 
                                                 </tr>
                                                 @endforeach
-                                                <tr>
 
-                                                    <td>
-                                                        <div class="card-action">
-                                                            <button type="submit" class="btn btn-success">Save</button>
-
-                                                        </div>
-                                                    </td>
-                                                </tr>
 
                                             </tbody>
-                                        </form>
+
 
                                     </table>
                                 </div>

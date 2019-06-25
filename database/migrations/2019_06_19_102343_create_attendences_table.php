@@ -17,12 +17,18 @@ class CreateAttendencesTable extends Migration
             $table->bigIncrements('id');
             $table->date('attend_date');
             $table->enum('status', [0,1])->default(1);
-            $table->text('dataAttendence')->nullable();
+            $table->bigInteger('student_id')->unsigned();
             $table->bigInteger('cls_id')->unsigned();
             $table->bigInteger('sec_id')->unsigned();
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
+
+
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('cls_id')->references('id')->on('i_classes');
+            $table->foreign('sec_id')->references('id')->on('sections');
+
         });
     }
 
