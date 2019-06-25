@@ -91,7 +91,7 @@
 								<ul class="nav nav-collapse">
 
 									<li>
-										<a href="icon-menu.html">
+										<a href="{{url('attend')}}">
 											<span class="sub-item">Student Attendence</span>
 										</a>
 									</li>

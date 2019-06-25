@@ -292,7 +292,8 @@ class StudentController extends Controller
 
             $atten=$attendanceStrength*100/$totalStrength;
             $attendingPercentage=(round($atten));
-            return  [$attendingPercentage,$totalStrength];
+            return  [$attendingPercentage,
+            $totalStrength];
 
         }
 
@@ -318,7 +319,7 @@ class StudentController extends Controller
          $attendData = DB::table('attendences')
         ->where('student_id',$id)
         ->select('attendences.attend_date','attendences.status','attendences.student_id')
-        ->get();
+        ->paginate(15);
 
 
 

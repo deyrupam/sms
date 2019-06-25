@@ -113,7 +113,7 @@
                                         @else
                                         <button type="button" class="btn btn-icon btn-round btn-danger">
 											<span>A</span>
-										</button>
+										</button></td>
                                         @endif
 
 											</tr>
@@ -128,11 +128,16 @@
                                             <td>  Total </td>
                                             <td> {{$attendingPercent[1]}} (Days) </td>
                                             </tr>
+                                            <tr>
+
+
+                                            </tr>
 											</tbody>
 									</table>
+                                    {{$dataAttendence->links() }}
+
 								</div>
 							</div>
-
 
 
 						</div>

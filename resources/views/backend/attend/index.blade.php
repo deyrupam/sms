@@ -169,54 +169,50 @@ input:checked + .slider:before {
                                 </div>
                                 </form>
                             </div>
-
+                             @if($selectDate)
                             <div class="card-body">
                                 <!-- Modal -->
                                 <div class="card-header">
-                                    <div class="card-title"></div>
-                                </div>
+                                    <div class="card-title">
 
+                                    <span>Date : {{$selectDate}}<span> |
+
+                                    <span> Class -{{$selectClass}}<span> |
+                                    <span>Section -{{$selectSection}} <span>
+                                    </div>
+                                </div>
+                                @endif
                                 <div class="table-responsive">
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
-                                            <tr>
 
 
 
                                                 <th>Name</th>
-                                                <th>Rollno</th>
-                                                <th>Class</th>
-                                                <th>Section</th>
+                                                <th>Status</th>
                                                 <th style="width: 10%">Action</th>
                                             </tr>
                                         </thead>
 
 
                                             <tbody>
+                                             @foreach($getAttendence as $attendence)
 
-                                            @foreach($student as $stu)
                                                 <tr>
+                                                    <td>{{$attendence->name}}</td>
+                                                    <td> @if($attendence->status == 1)<button type="button" class="btn btn-icon btn-round btn-success">
+                                                <span>P</span>
+										</button></td>
+                                        @else
+                                        <button type="button" class="btn btn-icon btn-round btn-danger">
+											<span>A</span>
+										</button></td>
+                                        @endif
 
-
-
-                                                    <td>{{$stu->name}}</td>
-                                                    <td>{{$stu->roll_no}}</td>
-                                                    <td>{{$stu->cls_name}}</td>
-                                                    <td>{{$stu->sec_name}}</td>
-                                                    <td>
-                                                    <div class="form-button-action">
-                                                    <input type="hidden" class="form-control" name="student_id[]" id="" value="{{$stu->id}}">
-                                                     </div>
-                                                    <div class="form-group">
-												    <label for="exampleFormControlSelect1">Status</label>
-												    <select class="form-control" id="attendence[]" name="attendence[]">
-                                                    <option value="1">P</option>
-
-                                                    </select>
-											       </div></td>
 
                                                 </tr>
-                                                @endforeach
+
+                                            @endforeach
 
 
                                             </tbody>

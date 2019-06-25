@@ -172,10 +172,9 @@ input:checked + .slider:before {
 
                             <div class="card-body">
                                 <!-- Modal -->
-
-                                <p>Date : {{$attend_date}} <li class="separator">
-                                <i class="flaticon-right-arrow"></i>
-                            </li>   </p>
+                                @if($attend_date)
+                                <p>Date : {{$attend_date}}  </p>
+                            @endif()
                                 <div class="table-responsive">
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
@@ -214,6 +213,7 @@ input:checked + .slider:before {
 
                                                 </tr>
                                                 @endforeach
+                                                @if($attend_date)
                                                 <tr>
 
                                                     <td>
@@ -224,8 +224,9 @@ input:checked + .slider:before {
                                                             <button type="submit" class="btn btn-success">Save</button>
 
                                                         </div>
-                                                    </<input>
+
                                                 </tr>
+                                                @endif
 
                                             </tbody>
                                         </form>
